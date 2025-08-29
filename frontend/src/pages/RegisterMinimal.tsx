@@ -641,9 +641,7 @@ const RegisterMinimal = ({ onRegister, onBackToLogin }: RegisterProps) => {
           flexDirection: 'column',
           justifyContent: 'center',
           borderLeft: '1px solid #27272a',
-          // '@media (max-width: 768px)': {
-            display: 'none'
-          }
+
         }}
         className="hidden lg:flex"
         >
