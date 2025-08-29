@@ -26,7 +26,7 @@ const LoginMinimal = ({ onLogin, onRegister }: LoginProps) => {
     setIsLoading(true);
     try {
       // Login será feito pelo AuthContext
-      await login(data.email, data.password);
+      await loginUser(data.email, data.password);
     } catch (error) {
       // Erro já tratado no AuthContext
     } finally {
@@ -325,7 +325,7 @@ const LoginMinimal = ({ onLogin, onRegister }: LoginProps) => {
           flexDirection: 'column',
           justifyContent: 'center',
           borderLeft: '1px solid #27272a',
-          '@media (max-width: 768px)': {
+          // '@media (max-width: 768px)': {
             display: 'none'
           }
         }}

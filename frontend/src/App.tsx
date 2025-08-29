@@ -33,13 +33,13 @@ function AppContent() {
     <Routes>
       {/* Rotas públicas */}
       <Route path="/login" element={
-        isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginMinimal />
+        isAuthenticated ? <Navigate to="/dashboard" replace /> : <LoginMinimal onLogin={() => {}} />
       } />
       <Route path="/register" element={
-        isAuthenticated ? <Navigate to="/dashboard" replace /> : <RegisterMinimal />
+        isAuthenticated ? <Navigate to="/dashboard" replace /> : <RegisterMinimal onRegister={() => {}} onBackToLogin={() => {}} />
       } />
       <Route path="/investor-profile" element={
-        isAuthenticated ? <Navigate to="/dashboard" replace /> : <InvestorProfileMinimal />
+        isAuthenticated ? <Navigate to="/dashboard" replace /> : <InvestorProfileMinimal onComplete={() => {}} />
       } />
       
       {/* Rotas protegidas */}

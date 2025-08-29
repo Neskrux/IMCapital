@@ -750,7 +750,7 @@ const ProfileMinimal = () => {
                     }}>
                       <input
                         type="checkbox"
-                        checked={preferences[pref.key as keyof typeof preferences]}
+                        checked={Boolean(preferences[pref.key as keyof typeof preferences])}
                         onChange={(e) => setPreferences({ 
                           ...preferences, 
                           [pref.key]: e.target.checked 
