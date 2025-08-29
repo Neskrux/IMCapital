@@ -1,0 +1,349 @@
+/* CSS de Backup - Dark & Gold Theme */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0a0a0b;
+  color: #f7f7f8;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Login Page */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  background: linear-gradient(135deg, #0a0a0b 0%, #18181b 100%);
+}
+
+.login-form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: #18181b;
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid #27272a;
+}
+
+.logo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  background: linear-gradient(135deg, #f0b429 0%, #de911d 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0a0a0b;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title h1 {
+  background: linear-gradient(135deg, #f0b429 0%, #de911d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #a8a8ad;
+  font-size: 0.9rem;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #d0d0d3;
+  font-weight: 500;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: #27272a;
+  border: 1px solid #3f3f46;
+  border-radius: 8px;
+  color: #f7f7f8;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #f0b429;
+  box-shadow: 0 0 0 3px rgba(240, 180, 41, 0.1);
+}
+
+.form-input::placeholder {
+  color: #71717a;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #f0b429 0%, #de911d 100%);
+  color: #0a0a0b;
+  width: 100%;
+  padding: 16px;
+  font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(240, 180, 41, 0.3);
+}
+
+.btn-outline {
+  border: 2px solid #f0b429;
+  color: #f0b429;
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: #f0b429;
+  color: #0a0a0b;
+}
+
+/* Utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-gold {
+  color: #f0b429;
+}
+
+.text-gray {
+  color: #a8a8ad;
+}
+
+.mb-1 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+.mt-4 {
+  margin-top: 2rem;
+}
+
+/* Links */
+a {
+  color: #f0b429;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #de911d;
+}
+
+/* Checkbox */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  color: #a8a8ad;
+  font-size: 0.9rem;
+}
+
+.checkbox-label input {
+  margin-right: 0.5rem;
+}
+
+/* Features Section */
+.features-section {
+  flex: 1;
+  background: linear-gradient(135deg, #18181b 0%, #0a0a0b 100%);
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.features-content {
+  max-width: 500px;
+}
+
+.features-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.features-subtitle {
+  color: #a8a8ad;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.feature-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(240, 180, 41, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.feature-icon svg {
+  width: 24px;
+  height: 24px;
+  color: #f0b429;
+}
+
+.feature-text h3 {
+  color: #f7f7f8;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.feature-text p {
+  color: #a8a8ad;
+  font-size: 0.9rem;
+}
+
+/* CDI Display */
+.cdi-display {
+  background: rgba(24, 24, 27, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(240, 180, 41, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 3rem;
+}
+
+.cdi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.cdi-rate {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #f0b429;
+}
+
+.cdi-bar {
+  width: 100%;
+  height: 8px;
+  background: #27272a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cdi-progress {
+  height: 100%;
+  background: linear-gradient(135deg, #f0b429 0%, #de911d 100%);
+  width: 75%;
+  animation: progressLoad 2s ease-out;
+}
+
+@keyframes progressLoad {
+  from { width: 0%; }
+  to { width: 75%; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+  
+  .features-section {
+    display: none;
+  }
+  
+  .login-form {
+    padding: 1rem;
+  }
+  
+  .features-title {
+    font-size: 2rem;
+  }
+}
+
+/* Loading Animation */
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #27272a;
+  border-radius: 50%;
+  border-top-color: #f0b429;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
