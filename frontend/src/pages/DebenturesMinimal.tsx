@@ -37,7 +37,7 @@ const DebenturesMinimal = () => {
     sector: d.company_sector || 'Diversos',
     unit_price: d.unit_price,
     companyInfo: {
-      logo: d.company_logo || d.logo_url || `https://via.placeholder.com/200x100/f0b429/0a0a0b?text=${encodeURIComponent(d.company_name || 'Logo')}`,
+      logo: d.company_logo || (d as any).logo_url || `https://via.placeholder.com/200x100/f0b429/0a0a0b?text=${encodeURIComponent(d.company_name || 'Logo')}`,
       description: d.company_description || `${d.company_name} é uma empresa líder em seu setor.`,
       founded: d.company_founded?.toString() || 'N/A',
       employees: d.company_employees || 'N/A',

@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import toast from 'react-hot-toast';
+import { useAuth } from '../contexts/AuthContext';
 
 const schema = yup.object({
   email: yup.string().email('Email inválido').required('Email é obrigatório'),
@@ -22,11 +23,13 @@ const LoginMinimal = ({ onLogin, onRegister }: LoginProps) => {
     resolver: yupResolver(schema)
   });
 
+  const { login } = useAuth();
+
   const onSubmit = async (data: any) => {
     setIsLoading(true);
     try {
       // Login será feito pelo AuthContext
-      await loginUser(data.email, data.password);
+      await login(data.email, data.password);
     } catch (error) {
       // Erro já tratado no AuthContext
     } finally {
