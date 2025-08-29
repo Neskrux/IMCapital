@@ -30,12 +30,37 @@ app.get('/health', (req, res) => {
     status: 'OK', 
     timestamp: new Date().toISOString(),
     stripe: !!process.env.STRIPE_SECRET_KEY,
-    supabase: !!process.env.SUPABASE_URL
+    supabase: !!process.env.SUPABASE_URL,
+    stripe_key_prefix: process.env.STRIPE_SECRET_KEY ? process.env.STRIPE_SECRET_KEY.substring(0, 7) : 'NOT_SET'
   });
+});
+
+// Teste de configuração Stripe
+app.get('/api/stripe/test', async (req, res) => {
+  try {
+    // Tentar buscar o balanço para verificar se a chave está funcionando
+    const balance = await stripe.balance.retrieve();
+    res.json({
+      success: true,
+      message: 'Stripe configurado corretamente',
+      currency: balance.available[0]?.currency || 'brl',
+      livemode: balance.livemode
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      type: error.type,
+      code: error.code
+    });
+  }
 });
 
 // Criar PIX Payment com Stripe
 app.post('/api/payments/pix', async (req, res) => {
+  console.log('=== INICIANDO PAGAMENTO PIX ===');
+  console.log('Dados recebidos:', req.body);
+  
   try {
     const { amount, userId, userEmail, description } = req.body;
 
@@ -46,17 +71,26 @@ app.post('/api/payments/pix', async (req, res) => {
     }
 
     // Criar Payment Intent com PIX no Stripe
+    console.log('Criando PaymentIntent no Stripe...');
+    
     const paymentIntent = await stripe.paymentIntents.create({
       amount: Math.round(amount * 100), // Stripe usa centavos
       currency: 'brl',
       payment_method_types: ['pix'],
+      payment_method_options: {
+        pix: {
+          expires_after_seconds: 3600 // PIX expira em 1 hora
+        }
+      },
       description: description || `Depósito IMCapital - ${new Date().toLocaleDateString('pt-BR')}`,
-      receipt_email: userEmail,
       metadata: {
-        user_id: userId,
+        user_id: userId || 'anonymous',
+        user_email: userEmail || 'no-email',
         type: 'deposit'
       }
     });
+    
+    console.log('PaymentIntent criado:', paymentIntent.id);
 
     // Salvar transação no Supabase
     const { error: dbError } = await supabase
@@ -90,10 +124,17 @@ app.post('/api/payments/pix', async (req, res) => {
     });
 
   } catch (error) {
-    console.error('Erro ao criar pagamento PIX:', error);
+    console.error('=== ERRO AO CRIAR PAGAMENTO PIX ===');
+    console.error('Tipo de erro:', error.type);
+    console.error('Mensagem:', error.message);
+    console.error('Stack:', error.stack);
+    
+    // Retornar erro mais detalhado
     res.status(500).json({ 
       error: 'Erro ao processar pagamento',
-      details: error.message 
+      details: error.message,
+      type: error.type,
+      code: error.code
     });
   }
 });
