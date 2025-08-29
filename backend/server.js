@@ -283,10 +283,15 @@ app.post('/webhooks/stripe', async (req, res) => {
   res.json({ received: true });
 });
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando na porta ${PORT}`);
-  console.log(`📍 URL: http://localhost:${PORT}`);
-  console.log(`💳 Stripe configurado: ${!!process.env.STRIPE_SECRET_KEY}`);
-  console.log(`🗄️  Supabase configurado: ${!!process.env.SUPABASE_URL}`);
-});
+// Iniciar servidor (apenas em desenvolvimento)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor rodando na porta ${PORT}`);
+    console.log(`📍 URL: http://localhost:${PORT}`);
+    console.log(`💳 Stripe configurado: ${!!process.env.STRIPE_SECRET_KEY}`);
+    console.log(`🗄️  Supabase configurado: ${!!process.env.SUPABASE_URL}`);
+  });
+}
+
+// Exportar para Vercel
+module.exports = app;
