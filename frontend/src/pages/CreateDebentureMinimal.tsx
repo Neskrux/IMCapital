@@ -58,7 +58,7 @@ const CreateDebentureMinimal = () => {
     }
   };
 
-  useState(() => {
+  useEffect(() => {
     fetchCompanies();
   }, []);
 

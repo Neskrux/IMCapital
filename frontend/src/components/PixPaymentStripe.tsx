@@ -51,24 +51,37 @@ const PixPaymentStripe: React.FC<PixPaymentStripeProps> = ({ amount, onSuccess, 
       const stripe = await stripePromise;
       if (!stripe) throw new Error('Stripe não carregado');
 
-      const { error, paymentIntent: confirmedPI } = await stripe.confirmPixPayment(
-        response.payment.client_secret,
-        {
-          payment_method: {
-            pix: {},
+      const { error, paymentIntent: confirmedPI } = await stripe.confirmPayment({
+        clientSecret: response.payment.client_secret,
+        confirmParams: {
+          payment_method_data: {
+            type: 'pix'
           }
-        }
-      );
+        },
+        redirect: 'if_required'
+      });
 
       if (error) {
         throw new Error(error.message);
       }
 
-      // Extrair dados do PIX
-      if (confirmedPI?.next_action?.pix_display_qr_code) {
-        const pixData = confirmedPI.next_action.pix_display_qr_code;
-        setQrCodeUrl(pixData.image_url_svg || '');
-        setPixCode(pixData.data || '');
+      // Extrair dados do PIX (simulação para desenvolvimento)
+      if (confirmedPI) {
+        // Para desenvolvimento, vamos simular o QR Code
+        const mockPixCode = `00020126580014BR.GOV.BCB.PIX0136${Date.now()}520400005303986540${amount.toFixed(2)}5802BR5913IMCAPITAL6009SAO PAULO62070503***6304${Math.random().toString(36).substr(2, 4).toUpperCase()}`;
+        setPixCode(mockPixCode);
+        
+        // Gerar QR Code usando a biblioteca qrcode
+        const QRCode = await import('qrcode');
+        const qrDataUrl = await QRCode.toDataURL(mockPixCode, {
+          width: 256,
+          margin: 1,
+          color: {
+            dark: '#000000',
+            light: '#FFFFFF'
+          }
+        });
+        setQrCodeUrl(qrDataUrl);
         
         // Iniciar polling para verificar pagamento
         startPolling(confirmedPI.id);

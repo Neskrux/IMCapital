@@ -25,8 +25,8 @@ const LoginMinimal = ({ onLogin, onRegister }: LoginProps) => {
   const onSubmit = async (data: any) => {
     setIsLoading(true);
     try {
-      // Usar o onLogin que recebe email e password
-      await onLogin(data.email, data.password);
+      // Login será feito pelo AuthContext
+      await login(data.email, data.password);
     } catch (error) {
       // Erro já tratado no AuthContext
     } finally {
